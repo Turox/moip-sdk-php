@@ -8,6 +8,8 @@ use Moip\Resource\Entry;
 use Moip\Resource\Multiorders;
 use Moip\Resource\Orders;
 use Moip\Resource\Payment;
+use Moip\Resource\Notification;
+
 
 class Moip
 {
@@ -26,9 +28,9 @@ class Moip
 
     /**
      * Client name.
-     *
+     * 
      * @const string
-     *
+     * 
      * @deprecated
      **/
     const CLIENT = 'Moip SDK';
@@ -62,9 +64,7 @@ class Moip
     /**
      * Create a new api connection instance.
      *
-     * @param HTTPConnection $http_connection
-     *
-     * @return HTTPConnection
+     * @return \Moip\Http\HTTPConnection
      */
     public function createConnection(HTTPConnection $http_connection)
     {
@@ -75,6 +75,15 @@ class Moip
         return $http_connection;
     }
 
+    /**
+     * Create a new Notification instance.
+     * 
+     * @return \Moip\Resource\Notification
+     */
+    
+    public function notifications(){
+        return new Notification($this);
+    }
     /**
      * Create a new Customer instance.
      *
@@ -127,7 +136,7 @@ class Moip
 
     /**
      * Get the endpoint.
-     *
+     * 
      * @return \Moip\Moip::ENDPOINT_PRODUCTION|\Moip\Moip::ENDPOINT_SANDBOX
      */
     public function getEndpoint()
